@@ -1,1 +1,1 @@
-# task-slug-generator-saleh
+SlugGenerator .Net Library that converts text into a URL-friendly slug
