@@ -1,16 +1,14 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace SlugGenerator;
-
 public class SlugGenerator
 {
-    public static string Generate(string text)
+    public static string Generate(string text,char c = '-')
     {
-        if(text == null) return string.Empty;
+        if(text == null) throw new ArgumentNullException(nameof(text));
 
-        return string.Join(
-            "-", Regex.Replace(text.ToLower(),
-            "[^\\p{L}\\d\\s-_]", "").Split(new char[] { ' ', '-', '_' },
-            StringSplitOptions.RemoveEmptyEntries));
+        var cleaned = Regex.Replace(text.ToLowerInvariant(), @"[^\p{L}\d\s_-]+", "");
+        var parts = cleaned.Split(new[] { ' ', '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
+        return string.Join(c, parts);
     }
 }
