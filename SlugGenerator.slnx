@@ -3,6 +3,6 @@
     <Project Path="src/SlugGenerator/SlugGenerator.csproj" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="SlugGenerator_Test/SlugGenerator_Test.csproj" Id="9ff366c5-78f9-44f5-bad6-5db133750e98" />
+    <Project Path="SlugGenerator_Tests/SlugGenerator_Tests.csproj" Id="d9d4f849-2140-4cfb-b0dd-3de2ae4f0cb7" />
   </Folder>
 </Solution>
