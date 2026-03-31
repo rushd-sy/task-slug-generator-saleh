@@ -7,8 +7,9 @@ public class SlugGenerator
     {
         if(text == null) throw new ArgumentNullException(nameof(text));
 
-        var cleaned = Regex.Replace(text.ToLowerInvariant(), @"[^\p{L}\d\s_-]+", "");
-        var parts = cleaned.Split(new[] { ' ', '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
-        return string.Join(c, parts);
+        return  Regex.Replace(
+                Regex.Replace(text.ToLowerInvariant(), @"[^\p{L}\d\s\-_]", ""),
+                @"[\s\-_]+", c.ToString())
+                .Trim('-');
     }
 }
