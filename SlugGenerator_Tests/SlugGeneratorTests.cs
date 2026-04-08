@@ -1,4 +1,5 @@
-﻿using static SlugGenerator.SlugGenerator;
+﻿using SlugGenerator;
+using static SlugGenerator.SlugGenerator;
 
 namespace SlugGenerator_Tests
 {
@@ -39,7 +40,36 @@ namespace SlugGenerator_Tests
         {
             string input = "شقة للبيع";
             string expected = "شقة-للبيع";
-            string actual = Generate(input);            Assert.Equal(expected, actual);
+            string actual = Generate(input); Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void GenerateUnique_SameInput_ReturnUniqueSlug()
+        {
+            string input = "Hello World";
+            string slug1 = GenerateUnique(input);
+            string slug2 = GenerateUnique(input);
+            Assert.NotEqual(slug1, slug2);
+        }
+
+        [Fact]
+        public void ToSlug_InputWithOutSeparator_ReturnSlugSeparatedWithDefaultSeparator()
+        {
+            string input = "Hello World";
+            string slug = SlugExtension.ToSlug(input);
+
+            Assert.Equal("hello-world", slug);
+        }
+
+        [Fact]
+        public void ToSlug_InputWithSeparator_ReturnSlugSeparatedWithSpecificSeparator()
+        {
+            string input = "Hello World";
+            string slug = SlugExtension.ToSlug(input, '_');
+
+            Assert.Equal("hello_world", slug);
+
+        }
+
     }
 }
