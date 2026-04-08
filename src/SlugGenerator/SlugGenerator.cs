@@ -12,4 +12,11 @@ public class SlugGenerator
                 @"[\s\-_]+", c.ToString())
                 .Trim('-');
     }
+
+    public static string GenerateUnique(string text , char separator = '-')
+    {
+        var slug = Generate(text, separator);
+        var uniqueId = Guid.NewGuid().ToString("N").Substring(0, 8);
+        return $"{slug}{separator}{uniqueId}";
+    }
 }
